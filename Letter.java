@@ -8,19 +8,19 @@ public class Letter extends AFD {
 	public Token evaluate(CharacterIterator code) {
 		//palavras reservadas
 		ArrayList<String> reservadas = new ArrayList<>();
-		reservadas.add("if");
-		reservadas.add("else");
-		reservadas.add("for");
-		reservadas.add("while");
-		reservadas.add("int");
-		reservadas.add("float");
-		reservadas.add("String");
-		reservadas.add("char");
-		reservadas.add("return");
-		reservadas.add("break");
-		reservadas.add("continue");
-		reservadas.add("boolean");
-		reservadas.add("print");
+		reservadas.add("if");//if
+		reservadas.add("else");//else
+		reservadas.add("for");//for
+		reservadas.add("while");//while
+		reservadas.add("int");//int
+		reservadas.add("float");//float
+		reservadas.add("String");//String
+		reservadas.add("char");//char
+		reservadas.add("return");//return
+		reservadas.add("break");//break
+		reservadas.add("continue");//continue
+		reservadas.add("boolean");//boolean
+		reservadas.add("print");//print
 
 		if(Character.isLetter(code.current())) {
 			String letter = readLetter(code);

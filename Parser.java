@@ -19,7 +19,7 @@ public class Parser {
     public void main(){
         token = nextToken();
         if(verifica()){
-            if(token.getTipo() == "EOF"){
+            if(token.getTipo().equals("EOF")){
                 System.out.println("Sintaticamente correto");
             }else{
                 erro("EOF");

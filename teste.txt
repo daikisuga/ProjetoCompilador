@@ -1,4 +1,5 @@
-if x > 5:
+if x > 9:
     x = 3
 else:
-    x = 1
+    x = 5
+    #mamamia rola#
