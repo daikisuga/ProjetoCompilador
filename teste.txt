@@ -1,5 +1,5 @@
-if x > 9:
-    x = 3
-else:
-    x = 5
-    #mamamia rola#
+if ( x > 2 ){
+    if (x == 3){
+        x = 0
+    }
+}
