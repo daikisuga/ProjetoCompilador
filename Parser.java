@@ -42,42 +42,16 @@ public class Parser {
             if(elseif()) return true;
         }else if(token.getLexema().equals("$")){
             return true;
-        }else if(token.getTipo().equals("VAR")){
-            if(atrib()) return true;
         }
         erro("verifica");
         return false;
     }
 
-    public boolean init(){
-        if(bloco() || exis()){
-            return true;
-        }
-        erro("init");
-        return false;
-    }
-
-    public boolean exis(){
-        if(init()){
-            return true;
-        }
-        return true;
-    }
-
-    public boolean bloco(){
-        while(!token.getLexema().equals("}")){
-            verifica();
-        }
-        return true;
-    }
-
     public boolean iff(){
-        if(matchL("if") && condicao() && matchL("{") && bloco() && matchL("}")){
-            return true;
-        // if(matchL("if") && condicao() && matchL("{") && (expressao() || iff()) && matchL("}")||verifica()){
-        //     if(verifica()){
-        //         return true;
-        //     }
+        if(matchL("if") && condicao() && matchL("{") && expressao() && matchL("}")){
+            if(verifica()){
+                return true;
+            }
         }
         erro("iff");
         return false;
@@ -89,7 +63,7 @@ public class Parser {
                 return true;
             }
         }
-        erro("elsee");
+        erro("elsif");
         return false;
     }
 
@@ -120,10 +94,6 @@ public class Parser {
         //for(id = 0; i< 10; i++)
     }
 
-    public boolean atrib(){
-        return true;
-    }
-
     public boolean condicao(){
         if(matchL("(") && valor() && operador() && valor() && matchL(")")){
             return true;
@@ -141,7 +111,7 @@ public class Parser {
     }
 
     public boolean expressao(){
-        if(matchT("VAR") && matchL("=") && (matchT("INT") || matchT("FLT"))){
+        if((matchT("VAR") && operador() && (matchT("INT") || matchT("FLT")))){
             return true;
         }
         erro("expressao");
@@ -149,8 +119,9 @@ public class Parser {
     }
 
     public boolean operador(){
-        if(matchL("+") || matchL("-") || matchL("*") || matchL("/") || matchL("%") || matchL("==") || matchL("<") || matchL(">")){
-            //Falta %, (, ), :;
+        if(matchL("+") || matchL("-") || matchL("*") || matchL("/") || matchL("%") || matchL("=") ||
+            matchL("%") || matchL("(") || matchL(")") || matchL(">") || matchL("<") || matchL(":")){
+            //Falta %, (, ), >, <, :;
             return true;
         }
         erro("operador");
@@ -171,29 +142,5 @@ public class Parser {
             return true;
         }
         return false;
-    }
-
-    /*private boolean matchL(String lexema, String newcode){
-        if(token.getLexema().equals(lexema)){
-            print(newcode);
-            token = nextToken();
-            return true;
-        }
-        erro(lexema);
-        return false;
-    }
-
-    private boolean matchT(String tipo, String newcode){
-        if(token.getTipo().equals(tipo)){
-            print(newcode);
-            token = nextToken();
-            return true;
-        }
-        erro(tipo);
-        return false;
-    }*/
-    
-    public void print(String code){
-        System.out.println(code);
     }
 }
